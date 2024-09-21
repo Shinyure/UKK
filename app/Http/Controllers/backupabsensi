@@ -1,0 +1,103 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Absensi;
+use Illuminate\Http\Request;
+
+class AbsensiController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $absensi = Absensi::all();
+        return view('absensi.index', ['absensi'=>$absensi]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view ('absensi.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'devisi' => 'required',
+        ]);
+        Absensi::create([
+            'devisi' => $request->devisi,
+        ]);
+
+        return redirect('absensi')->with('success');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Absensi  $absensi
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Absensi $absensi)
+    {
+        
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Absensi  $absensi
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $data = Absensi::where('kodeabsensi', $id)->first();
+        return view('absensi.edit')->with('data', $data);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Absensi  $absensi
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request,$id)
+    {
+        $request->validate([
+            'devisi' => 'required',
+        ]);
+        $data = ([
+            'devisi' => $request->devisi,
+        ]);
+
+        Absensi::where('kodeabsensi', $id)->update($data);
+        return redirect('absensi')->with('success');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Absensi  $absensi
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Absensi::where('kodeabsensi', $id)->delete();
+        return redirect('absensi')->with('Data sudah di hapus');
+    }
+}
