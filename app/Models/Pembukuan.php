@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pembukuan extends Model
 {
-    use HasFactory;
+    protected $table = 'pembukuan'; 
+    protected $fillable = ['bulan'];
+    protected $guarded =  ['id'];
 
-    protected $table = 'pembukuan';
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class, 'bulan_id');
+    }
 
-    protected $fillable = ['keterangan'];  // Hanya ada satu kolom yang bisa diisi
 }

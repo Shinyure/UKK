@@ -15,7 +15,7 @@ class CreatePembukuanTable extends Migration
     {
         Schema::create('pembukuan', function (Blueprint $table) {
             $table->id();
-            $table->string('keterangan');  // Kolom tunggal untuk pembukuan
+            $table->string('bulan');  
             $table->timestamps();
         });
     }

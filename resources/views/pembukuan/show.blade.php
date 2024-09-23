@@ -1,42 +1,40 @@
-@extends('layouts.tabelabsen')
+@extends('layouts.tabelbuku')
 
 @section('content')
-<div class="container">
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <a href="#" class="btn btn-primary float-right">CV Excl</a>
-                        
-    <h1>JANUARI {{ \Carbon\Carbon::now()->startOfWeek()->format('F d') }} - 
-    {{ \Carbon\Carbon::now()->endOfWeek()->subDay(2)->format('d') }}</h1>
-    
-    <div class="table-responsive">
-        <table id="absensiTable" class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>NIP</th>
-                    <th>Nama</th>
-                    <th>Senin</th>
-                    <th>Selasa</th>
-                    <th>Rabu</th>
-                    <th>Kamis</th>
-                    <th>Jumat</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($karyawan as $item)
-                <tr>
-                    <td>{{ $item->nip }}</td>
-                    <td>{{ $item->nama }}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    </tr>
-                @endforeach
-            </tbody>
-         </table>
 
-    </div>
+@if(session('success'))
+    <p class="alert alert-success">{{ session('success') }}</p>
+@endif
 
+<h1 class="h3 mb-2 text-gray-800">Absen Bulan: {{ $pembukuan->bulan }}</h1>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>NIP</th>
+                <th>Nama</th>
+                <th>Senin</th>
+                <th>Selasa</th>
+                <th>Rabu</th>
+                <th>kamis</th>
+                <th>jumat</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($absensi as $item)
+            <tr>
+                <td>{{ $item->karyawan->nip }}</td>
+                <td>{{ $item->karyawan->nama}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
+
 @endsection

@@ -31,7 +31,7 @@
                     @endif
 
                     {{-- Upload file di dalam foto --}}
-                    <input type="file" id="foto" name="foto" style="display: none;">
+                    <input type="file" id="foto" name="foto" style="display: none;" accept="image/*">
                     
                     {{-- Data Nama, NIP, dan Divisi --}}
                     <div class="form-group" style="width: 300px; margin: 0 auto;">
@@ -41,7 +41,7 @@
 
                     <div class="form-group" style="width: 300px; margin: 0 auto;">
                         <label>NIP</label>
-                        <input type="number" class="form-control text-center" name="nip" value="{{$data->nip}}">
+                        <input type="number" class="form-control text-center" name="nip" value="{{$data->nip}}" readonly>
                     </div>
 
                     <div class="form-group" style="width: 300px; margin: 0 auto;">
@@ -56,6 +56,12 @@
             </div>
         </div>
     </div>
+</form>
+
+<form action="{{ url('karyawan/'.$data->nip) }}" method="POST" style="display: inline-block;">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Delete</button>
 </form>
 
 {{-- Script untuk menampilkan overlay dan fungsi upload file saat foto diklik --}}
@@ -74,6 +80,32 @@
 
     profileImage.addEventListener('click', () => {
         fileInput.click(); // Trigger input file saat foto diklik
+    });
+
+    // Preview foto baru
+    fileInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                profileImage.src = e.target.result; // Ganti foto dengan foto baru yang dipilih
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const nipField = document.querySelector('input[name="nip"]');
+        const originalNip = nipField.value;
+
+        nipField.addEventListener('input', function() {
+            if (nipField.value !== originalNip) {
+                alert('NIP tidak bisa diubah!');
+                nipField.value = originalNip; // Kembalikan NIP ke nilai asli
+            }
+        });
     });
 </script>
 

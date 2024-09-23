@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class AddForeignKeyToAbsensiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::table('absensi', function (Blueprint $table) {
-            $table->date('tanggal')->nullable(); // Kolom untuk menyimpan tanggal
+            // Tambahkan foreign key ke kolom nip
+            $table->foreign('nip')->references('nip')->on('karyawan')->onDelete('cascade');
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -25,7 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('absensi', function (Blueprint $table) {
-            $table->dropColumn('tanggal');
+            $table->dropForeign(['nip']);
         });
     }
-};
+}

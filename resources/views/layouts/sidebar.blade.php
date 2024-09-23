@@ -2,8 +2,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
-                <div class="sidebar-brand-icon" style="margin-top: 50px;">
-                    <img src="{{asset('ATRBPNLOGO.png') }}" alt="" style="width: 130px; height: 130px;">
+                <div class="sidebar-brand-icon" style="margin-top: 80px;">
+                    <img src="{{asset('ATRBPNLOGO.png') }}" alt="" style="width: 150px; height: 150px;">
                 </div>
             </a>
 

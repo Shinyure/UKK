@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateAbsensiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,17 +15,17 @@ return new class extends Migration
     {
         Schema::create('absensi', function (Blueprint $table) {
             $table->id();
-            $table->string('nip');
-            $table->boolean('senin')->default(0);
-            $table->boolean('selasa')->default(0);
-            $table->boolean('rabu')->default(0);
-            $table->boolean('kamis')->default(0);
-            $table->boolean('jumat')->default(0);
-            $table->string('bulan'); // Menyimpan bulan absensi
+            $table->string('nip')->unique();
+            $table->string('nama');
+            $table->boolean('senin')->default(false);
+            $table->boolean('selasa')->default(false);
+            $table->boolean('rabu')->default(false);
+            $table->boolean('kamis')->default(false);
+            $table->boolean('jumat')->default(false);
+            $table->string('bulan')->nullable();
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('absensi'); // Menghapus tabel jika rollback dilakukan
+        Schema::dropIfExists('absensi');
     }
-};
+}

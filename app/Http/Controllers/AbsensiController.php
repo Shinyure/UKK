@@ -4,17 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Absensi;
 use App\Models\Karyawan;  
+use App\Models\Pembukuan;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class AbsensiController extends Controller
 {
-
-    public function showPembukuan($bulan)
-    {
-        $absensi = Absensi::where('bulan', $bulan)->get(); // Menampilkan absensi berdasarkan bulan
-        return view('pembukuan.index', compact('absensi', 'bulan'));
-    }    
-
     /**
      * Display a listing of the resource.
      *
@@ -22,10 +17,12 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        // Ambil data karyawan dari database
-        $karyawan = Karyawan::select('nip', 'nama')->get();
-        return view('absensi.index', ['karyawan' => $karyawan]);
+        // Mengambil semua absensi dengan relasi ke karyawan
+        $absensi = Absensi::with('karyawan')->get();
+
+        return view('absensi.index', compact('absensi'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -44,26 +41,32 @@ class AbsensiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-
     {
-        // Mengambil bulan saat ini, bisa menggunakan Carbon atau fungsi PHP date()
-        $bulan = Carbon::now()->format('F'); // Mendapatkan nama bulan (contoh: September)
+        $validatedData = $request->validate([
+            'nip' => 'required|array',
+            'nama' => 'required|array',
+            'senin' => 'nullable|array',
+            'selasa' => 'nullable|array',
+            'rabu' => 'nullable|array',
+            'kamis' => 'nullable|array',
+            'jumat' => 'nullable|array',
+            'bulan_id' => 'nullable',
+        ]);
 
-        // Simpan data absensi untuk masing-masing karyawan
-        foreach ($request->nip as $nip => $value) {
+        foreach ($validatedData['nip'] as $key => $nip) {
             Absensi::create([
                 'nip' => $nip,
-                'senin' => $request->senin[$nip] ?? 0,
-                'selasa' => $request->selasa[$nip] ?? 0,
-                'rabu' => $request->rabu[$nip] ?? 0,
-                'kamis' => $request->kamis[$nip] ?? 0,
-                'jumat' => $request->jumat[$nip] ?? 0,
-                'bulan' => $bulan,  // Simpan sesuai bulan yang ditentukan
+                'nama' => $validatedData['nama'][$key],
+                'senin' => isset($validatedData['senin'][$key]),
+                'selasa' => isset($validatedData['selasa'][$key]),
+                'rabu' => isset($validatedData['rabu'][$key]),
+                'kamis' => isset($validatedData['kamis'][$key]),
+                'jumat' => isset($validatedData['jumat'][$key]),
+                'bulan_id' => $validatedData['bulan_id'] ?? null,
             ]);
         }
 
-        // Redirect ke halaman pembukuan berdasarkan bulan
-        return redirect()->route('pembukuan.show', ['bulan' => $bulan])->with('success', 'Absensi berhasil disimpan');
+        return redirect()->back()->with('success', 'Data absensi berhasil disimpan ke pembukuan.');
     }
 
 
@@ -74,10 +77,14 @@ class AbsensiController extends Controller
      * @param  \App\Models\Absensi  $absensi
      * @return \Illuminate\Http\Response
      */
-    public function show(Absensi $absensi)
+    
+    public function show()
     {
-        
+      
     }
+    
+
+
 
     /**
      * Show the form for editing the specified resource.

@@ -17,34 +17,38 @@ use App\Http\Controllers\SessionController;
 |
 */
 
+// Route untuk dashboard
 Route::get('/', function () {
+    return redirect()->route('sesi.index');
+});
+
+Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+// Route resource untuk Absensi, Karyawan, dan Pembukuan dengan middleware 'admin'
 Route::resource('absensi', AbsensiController::class)->middleware('admin');
 Route::resource('karyawan', KaryawanController::class)->middleware('admin');
 Route::resource('pembukuan', PembukuanController::class)->middleware('admin');
-Route::get('/login',[SessionController::class, 'index'])->middleware('guest');
-Route::get('sesi',[SessionController::class, 'index'])->middleware('guest');
-Route::post('/sesi/login',[SessionController::class, 'login'])->middleware('guest');
-Route::get('/sesi/logout',[SessionController::class, 'logout']);
-Route::post('/absensi/store', [AbsensiController::class, 'store'])->name('absensi.store');
-Route::get('/pembukuan/{bulan}', [AbsensiController::class, 'showPembukuan'])->name('pembukuan.show');
+
+// Route untuk sesi/login
+Route::get('/login', [SessionController::class, 'index'])->middleware('guest')->name('sesi.index');
+Route::get('/sesi', [SessionController::class, 'index'])->middleware('guest');
+
+// Route untuk login, register, dan logout
+Route::get('/sesi/login', [SessionController::class, 'index'])->middleware('guest')->name('sesi.index');
+Route::post('/sesi/login', [SessionController::class, 'login'])->middleware('guest')->name('sesi.login');
+Route::get('/sesi/logout', [SessionController::class, 'logout'])->name('sesi.logout');
+
+// Route untuk register admin baru
+Route::get('/sesi/register', [SessionController::class, 'showRegisterForm'])->name('sesi.create');
+Route::post('/sesi/register', [SessionController::class, 'register'])->name('sesi.register');
+Route::post('/sesi/register', [SessionController::class, 'register'])->name('register.submit');
 
 
-
-// Route untuk tiap bulan
-Route::get('/pembukuan/bulan/januari', [PembukuanController::class, 'januari'])->name('pembukuan.januari');
-Route::get('/pembukuan/bulan/februari', [PembukuanController::class, 'februari'])->name('pembukuan.februari');
-Route::get('/pembukuan/bulan/maret', [PembukuanController::class, 'maret'])->name('pembukuan.maret');
-Route::get('/pembukuan/bulan/april', [PembukuanController::class, 'april'])->name('pembukuan.april');
-Route::get('/pembukuan/bulan/mei', [PembukuanController::class, 'mei'])->name('pembukuan.mei');
-Route::get('/pembukuan/bulan/juni', [PembukuanController::class, 'juni'])->name('pembukuan.juni');
-Route::get('/pembukuan/bulan/juli', [PembukuanController::class, 'juli'])->name('pembukuan.juli');
-Route::get('/pembukuan/bulan/agustus', [PembukuanController::class, 'agustus'])->name('pembukuan.agustus');
-Route::get('/pembukuan/bulan/september', [PembukuanController::class, 'september'])->name('pembukuan.september');
-Route::get('/pembukuan/bulan/oktober', [PembukuanController::class, 'oktober'])->name('pembukuan.oktober');
-Route::get('/pembukuan/bulan/november', [PembukuanController::class, 'november'])->name('pembukuan.november');
-Route::get('/pembukuan/bulan/desember', [PembukuanController::class, 'desember'])->name('pembukuan.desember');
-
-
+// Route tambahan untuk absensi dan pembukuan
+Route::post('/absensi', [AbsensiController::class, 'store'])->name('absensi.store');
+Route::get('/pembukuan/{bulan}', [PembukuanController::class, 'show'])->name('pembukuan.show');
+Route::get('/pembukuan', [PembukuanController::class, 'index'])->name('pembukuan.index');
+Route::get('/pembukuans', [PembukuanController::class, 'show'])->name('pembukuan.show');
+Route::get('/pembukuan/{id}', [PembukuanController::class, 'show'])->name('pembukuan.show');

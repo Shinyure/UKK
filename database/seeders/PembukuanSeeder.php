@@ -16,18 +16,18 @@ class PembukuanSeeder extends Seeder
     public function run()
     {
         $pembukuan = [
-            ['keterangan' => 'Januari'],
-            ['keterangan' => 'Februari'],
-            ['keterangan' => 'Maret'],
-            ['keterangan' => 'April'],
-            ['keterangan' => 'Mei'],
-            ['keterangan' => 'Juni'],
-            ['keterangan' => 'Juli'],
-            ['keterangan' => 'Agustus'],
-            ['keterangan' => 'September'],
-            ['keterangan' => 'Oktober'],
-            ['keterangan' => 'November'],
-            ['keterangan' => 'Desember'],
+            ['bulan' => 'Januari'],
+            ['bulan' => 'Februari'],
+            ['bulan' => 'Maret'],
+            ['bulan' => 'April'],
+            ['bulan' => 'Mei'],
+            ['bulan' => 'Juni'],
+            ['bulan' => 'Juli'],
+            ['bulan' => 'Agustus'],
+            ['bulan' => 'September'],
+            ['bulan' => 'Oktober'],
+            ['bulan' => 'November'],
+            ['bulan' => 'Desember'],
         ];
 
         DB::table('pembukuan')->insert($pembukuan);
