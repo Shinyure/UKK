@@ -41,7 +41,7 @@ sesi/login atau halaman login
 ## Instalasi
 1. CLone Repository
 ```
-git clone https://github.com/Shinyure/ukk.git
+git clone https://github.com/Shinyure/UKK.git
 composer install
 cp .env.example .env
 ```
