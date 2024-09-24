@@ -1,51 +1,70 @@
-## Konsep Web Saya
-Website saya konsepnya untuk karyawan/karyawati absen dengan menyertakan pembukuan bulanan
+# Website Absensi ATR/BPN
+Website saya konsepnya untuk karyawan/karyawati absen dengan menyertakan pembukuan bulanan, sayangnya hanya 1 user yang bisa login yaitu **admin**, 
+Karena pada dasarnya tidak diperbolehkan sembarangan orang untuk melihat identitas karyawan/karyawati
 
 ## Fitur Web
 - Halaman Awal (Landing Page) 
 sesi/login atau halaman login
 
 - Autenthication
-  -Register
-  -Login
-## Learning Laravel
+  - Register
+  - Login
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Multi User
+  - Admin, yang mengelola web absensi
+  - User, dapat membuat akun baru
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Pencarian
+  - Pencarian Halaman tidak ada dikarenakan halaman sedikit
+  - pencarian Nama di tabel absensi
 
-## Laravel Sponsors
+> [!NOTE]
+> Website ini belum sepenuhnya berhasil dan selesai, masih ada banyak kekurangan
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Akun Default Untuk Pengujian
 
-### Premium Partners
+- Admin
+  - Email : admin@gmail.com
+  - Password : Bpnri2024
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+ - **User Dapat Register Akun**
 
-## Contributing
+## ERD & Relasi Antar Tabel
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Teknologi yang digunakan
+- Laravel 9
+- Boostrap 5
+- Php 8.2
 
-## Security Vulnerabilities
+## Instalasi
+1. CLone Repository
+```
+git clone https://github.com/Shinyure/ukk.git
+composer install
+cp .env.example .env
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2. Konfigurasi Database Pada `.env`
+```
+APP_DEBUG=true
+DB_DATABASE=database-anda
+DB_USERNAME=nama-pengguna-anda
+DB_PASSWORD=kata-sandi-anda
+```
 
-## License
+3. Migrasi dan Link Storage
+```
+php artisan key:generate
+php artisan storage:link
+php artisan migrate --seed
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. Aktifasi Web
+```
+php artisan serve
+```
+
+
+### Absensi ATR/BPN by Adhy Maulana Fatharani
