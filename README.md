@@ -36,8 +36,9 @@ Karena pada dasarnya tidak diperbolehkan sembarangan orang untuk melihat identit
 
 -Penjelasan
 > Relasi *tabel Karyawan* ke *tabel Absensi* menggunakan "NIP" agar data karyawan muncul di tabel absensi
-> Saya mencoba merelasi *tabel absensi* ke *tabel pembukuan* menggunakan "bulan" namun belum selesau,
-  dimana fungsi tombol saves untuk menyimpan *tabel absensi* ke halaman pembukuan berdasarkan bulannya lalu mereset data di dalam hari
+> Saya mencoba merelasi *tabel absensi* ke *tabel pembukuan* menggunakan "bulan" namun belum selesai,
+  dimana fungsi tombol saves untuk menyimpan *tabel absensi* ke halaman pembukuan berdasarkan bulannya lalu mereset data di dalam kolom hari gagal.
+> Dan saya belum sempat membuat form untuk absen
 
 ## UML Diagram Use Case
 <picture>
