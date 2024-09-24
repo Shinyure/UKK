@@ -30,8 +30,25 @@ Karena pada dasarnya tidak diperbolehkan sembarangan orang untuk melihat identit
  - **User Dapat Register Akun**
 
 ## ERD & Relasi Antar Tabel
+<picture>
+    <img alt="ERD" src="https://github.com/Shinyure/Nekochi/blob/main/ERD.png">
+</picture>
 
+-Penjelasan
+> Relasi *tabel Karyawan* ke *tabel Absensi* menggunakan "NIP" agar data karyawan muncul di tabel absensi
+> Saya mencoba merelasi *tabel absensi* ke *tabel pembukuan* menggunakan "bulan" namun belum selesau,
+  dimana fungsi tombol saves untuk menyimpan *tabel absensi* ke halaman pembukuan berdasarkan bulannya lalu mereset data di dalam hari
 
+## UML Diagram Use Case
+<picture>
+    <img alt="Uml Diagram" src="https://github.com/Shinyure/Nekochi/blob/main/umllukk.png">
+</picture>
+
+User hanya satu karena jobdesknya management absensi di kantor, dengan begitu jika user berganti maka di perlukan akun lagi
+
+> [!NOTE]
+> Didalam data karyawan terdapat indetitas karyawan/karyawati, oleh karena itu tidak bisa banyak user untuk akses ke web absensi.
+> Maka jika ada User lain, diperlukan akun lain untuk mencegah orang asing masuk ke web 
 
 ### Teknologi yang digunakan
 - Laravel 9
