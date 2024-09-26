@@ -70,7 +70,7 @@ class KaryawanController extends Controller
         $absen = [
             'nip' => $request->input('nip'),
             'nama' => $request->input('nama'),
-            'bulan' => $request->input('bulan') ?? now()->format('m'),  // Pastikan nilai bulan tidak kosong
+            'bulan' => $request->input('bulan') ?? now()->format('m'),  
             'senin' => false,
             'selasa' => false,
             'rabu' => false,

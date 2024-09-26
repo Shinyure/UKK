@@ -5,6 +5,7 @@ use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PembukuanController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\FormulirController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +53,7 @@ Route::get('/pembukuan/{bulan}', [PembukuanController::class, 'show'])->name('pe
 Route::get('/pembukuan', [PembukuanController::class, 'index'])->name('pembukuan.index');
 Route::get('/pembukuans', [PembukuanController::class, 'show'])->name('pembukuan.show');
 Route::get('/pembukuan/{id}', [PembukuanController::class, 'show'])->name('pembukuan.show');
+
+// Route Formulir untuk Absen
+Route::get('/formulir/create', [FormulirController::class, 'create'])->name('formulir.create');
+Route::post('/formulir/store', [FormulirController::class, 'store'])->name('formulir.store');

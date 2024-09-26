@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @if($errors->any())
+
 @foreach($errors->all() as $err)
 <p class="alert alert-danger">{{$err}}</p>
 @endforeach
@@ -103,7 +104,7 @@
         nipField.addEventListener('input', function() {
             if (nipField.value !== originalNip) {
                 alert('NIP tidak bisa diubah!');
-                nipField.value = originalNip; // Kembalikan NIP ke nilai asli
+                nipField.value = originalNip; // Kembalikan NIP ke nilai asli 
             }
         });
     });

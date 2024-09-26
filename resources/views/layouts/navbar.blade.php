@@ -51,9 +51,9 @@
         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
             aria-labelledby="alertsDropdown">
             <h6 class="dropdown-header">
-                Alerts Center
+                Notification
             </h6>
-            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+            <a class="dropdown-item text-center small text-gray-500" href="#">Show All</a>
         </div>
     </li>
 
@@ -69,7 +69,7 @@
         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
             aria-labelledby="messagesDropdown">
             <h6 class="dropdown-header">
-                Message Center
+                Message
             </h6>
             <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
         </div>
