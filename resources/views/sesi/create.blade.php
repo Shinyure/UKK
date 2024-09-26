@@ -85,7 +85,6 @@
     <script src="js/sb-admin-2.min.js"></script>
 
     <script>
-        // Toggle password visibility for both password fields
         const togglePassword = document.querySelector('#togglePassword');
         const password = document.querySelector('#password');
         const togglePasswordConfirmation = document.querySelector('#togglePasswordConfirmation');

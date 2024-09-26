@@ -49,10 +49,12 @@ Route::post('/sesi/register', [SessionController::class, 'register'])->name('reg
 
 // Route tambahan untuk absensi dan pembukuan
 Route::post('/absensi', [AbsensiController::class, 'store'])->name('absensi.store');
+Route::post('/absensi/simpan', [AbsensiController::class, 'simpan'])->name('absensi.simpan');
 Route::get('/pembukuan/{bulan}', [PembukuanController::class, 'show'])->name('pembukuan.show');
 Route::get('/pembukuan', [PembukuanController::class, 'index'])->name('pembukuan.index');
 Route::get('/pembukuans', [PembukuanController::class, 'show'])->name('pembukuan.show');
 Route::get('/pembukuan/{id}', [PembukuanController::class, 'show'])->name('pembukuan.show');
+
 
 // Route Formulir untuk Absen
 Route::get('/formulir/create', [FormulirController::class, 'create'])->name('formulir.create');

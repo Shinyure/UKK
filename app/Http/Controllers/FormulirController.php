@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Formulir;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FormulirController extends Controller
 {
@@ -19,22 +20,29 @@ class FormulirController extends Controller
             'nama' => 'required',
             'status' => 'required',
             'alasan' => 'required',
-            'bukti' => 'required|mimes:jpeg,jpg,png',
+            'bukti' => 'nullable|file|mimes:jpg,png,jpeg|max:2048',
         ]);
 
-        $bukti_file = $request->file('bukti');
-        $bukti_nama = now()->format('ymdhis') . '.' . $bukti_file->extension();
-        $bukti_file->move(public_path('bukti'), $bukti_nama);
+        if ($request->hasFile('bukti')) {
+            $file = $request->file('bukti');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads'), $filename);
+            $bukti = $filename;
+        } else {
+            $bukti = null;
+        }
 
-        $data = [
-            'nama' => $request->input('nama'),
-            'status' => $request->input('status'),
-            'alasan' => $request->input('alasan'),
-            'bukti' => $bukti_nama,
-        ];
+        Formulir::create([
+            'nama' => $request->nama,
+            'status' => $request->status,
+            'alasan' => $request->alasan,
+            'bukti' => $bukti,
+        ]);
 
-        Formulir::create($data);
-
-        return redirect()->back()->with('success');
+        return redirect()->route('absensi.index')
+                ->with('success', 'Absensi berhasil disimpan')
+                ->with('notification', 'Formulir baru berhasil diajukan oleh '.$request->nama)
+                ->with('notification_count', session('notification_count', 0) + 1);
     }
+
 }

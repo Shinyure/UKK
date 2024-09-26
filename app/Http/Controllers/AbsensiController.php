@@ -50,26 +50,32 @@ class AbsensiController extends Controller
             'rabu' => 'nullable|array',
             'kamis' => 'nullable|array',
             'jumat' => 'nullable|array',
-            'bulan_id' => 'nullable',
+            'bulan' => 'nullable'
         ]);
 
+        // Ambil atau buat pembukuan untuk bulan yang dipilih
+        $pembukuan = Pembukuan::firstOrCreate(['bulan' => $request->bulan]);
+
         foreach ($validatedData['nip'] as $key => $nip) {
-            Absensi::create([
-                'nip' => $nip,
-                'nama' => $validatedData['nama'][$key],
-                'senin' => isset($validatedData['senin'][$key]),
-                'selasa' => isset($validatedData['selasa'][$key]),
-                'rabu' => isset($validatedData['rabu'][$key]),
-                'kamis' => isset($validatedData['kamis'][$key]),
-                'jumat' => isset($validatedData['jumat'][$key]),
-                'bulan_id' => $validatedData['bulan_id'] ?? null,
-            ]);
+            // Periksa dan perbarui data absensi yang sudah ada atau buat baru
+            Absensi::updateOrCreate(
+                [
+                    'nip' => $nip,
+                    'bulan' => $pembukuan->bulan // Menggunakan bulan yang sama
+                ],
+                [
+                    'nama' => $validatedData['nama'][$key],
+                    'senin' => isset($validatedData['senin'][$key]) ? 1 : 0,
+                    'selasa' => isset($validatedData['selasa'][$key]) ? 1 : 0,
+                    'rabu' => isset($validatedData['rabu'][$key]) ? 1 : 0,
+                    'kamis' => isset($validatedData['kamis'][$key]) ? 1 : 0,
+                    'jumat' => isset($validatedData['jumat'][$key]) ? 1 : 0,
+                ]
+            );
         }
 
-        return redirect()->back()->with('success', 'Data absensi berhasil disimpan ke pembukuan.');
+        return redirect()->back()->with('success', 'Data absensi berhasil disimpan ke pembukuan bulan ' . $pembukuan->bulan);
     }
-
-
 
     /**
      * Display the specified resource.
@@ -131,4 +137,5 @@ class AbsensiController extends Controller
         return redirect('absensi')->with('Data sudah dihapus');
     }
 
+    
 }

@@ -22,4 +22,9 @@ class Absensi extends Model
         return $this->belongsTo(Karyawan::class, 'nip', 'nip');
     }
 
+    // Relasi ke Pembukuan
+    public function pembukuan()
+    {
+        return $this->belongsTo(Pembukuan::class, 'bulan_id');
+    }
 }

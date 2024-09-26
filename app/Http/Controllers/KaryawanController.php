@@ -119,12 +119,10 @@ class KaryawanController extends Controller
     {
         $karyawan = Karyawan::where('nip', $id)->firstOrFail();
 
-        // Validasi NIP
         if ($request->input('nip') !== $karyawan->nip) {
             return redirect()->back()->withErrors(['nip' => 'NIP tidak bisa diubah']);
         }
 
-        // Validasi dan update data lainnya
         $request->validate([
             'nama' => 'required',
             'devisi' => 'required',
@@ -144,7 +142,6 @@ class KaryawanController extends Controller
             $foto_nama = now()->format('ymdhis') . '.' . $foto_file->extension();
             $foto_file->move(public_path('foto'), $foto_nama);
 
-            // Hapus foto lama
             File::delete(public_path('foto') . '/' . $karyawan->foto);
 
             $data['foto'] = $foto_nama;

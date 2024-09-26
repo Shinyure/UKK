@@ -53,17 +53,12 @@ class PembukuanController extends Controller
      */
     public function show($id)
     {
-        // Ambil data pembukuan berdasarkan ID
         $pembukuan = Pembukuan::find($id);
     
         if ($pembukuan) {
-            // Ambil data absensi yang terkait dengan pembukuan tersebut
             $absensi = Absensi::where('bulan', $pembukuan->id)->get();
-    
-            // Kirim data pembukuan dan absensi ke view 'pembukuan.show'
             return view('pembukuan.show', compact('pembukuan', 'absensi'));
         } else {
-            // Jika pembukuan tidak ditemukan, kembalikan ke halaman sebelumnya dengan pesan error
             return redirect()->back()->with('error', 'Data pembukuan tidak ditemukan.');
         }
     }

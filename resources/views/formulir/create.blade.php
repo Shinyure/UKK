@@ -19,7 +19,7 @@
         .btn-radio {
             margin: 0 auto;
             display: inline-block;
-            padding: 20px 40px;
+            padding: 15px 50px;
             cursor: pointer;
             border-radius: 20px;
             border: 1px solid #ccc;
@@ -49,6 +49,8 @@
             background-color: #007bff;
             color: #fff;
         }
+
+
     </style>
 </head>
 <body>
@@ -62,7 +64,7 @@
 
         
         <div class="card card-custom p-4">
-            <form action="{{ route('absensi.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('formulir.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 
                 <div class="mb-3">
@@ -101,15 +103,15 @@
 
                 
                 <div class="mb-3">
-                    <label for="bukti_foto">Bukti Foto:</label>
-                        <input type="file" id="bukti_foto" name="bukti_foto">
-                        @error('bukti_foto')
+                    <label for="bukti">Bukti Foto:</label>
+                        <input type="file" id="bukti" name="bukti">
+                        @error('bukti')
                             <p>{{ $message }}</p>
                         @enderror
                 </div>
 
                
-                <div class="mb-3">
+                <div class="mb-3 text-center">
                     <button type="submit" class="btn btn-primary btn-submit">Submit</button>
                 </div>
             </form>

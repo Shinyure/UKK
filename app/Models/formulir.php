@@ -9,8 +9,9 @@ class formulir extends Model
 {
     use HasFactory;
 
+    protected $table = 'formulir';
     protected $fillable = [
-        'nama', 'status', 'alasan', 'bukti',
+        'nama', 'status', 'alasan',
     ];
 
 }
