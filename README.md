@@ -42,7 +42,7 @@ Karena pada dasarnya tidak diperbolehkan sembarangan orang untuk melihat identit
 
 ## UML Diagram Use Case
 <picture>
-    <img alt="Uml Diagram" src="https://github.com/Shinyure/Nekochi/blob/main/umllukk.png">
+    <img alt="Uml Diagram" src="https://github.com/Shinyure/Nekochi/blob/main/uml2.png">
 </picture>
 
 User hanya satu karena jobdesknya management absensi di kantor, dengan begitu jika user berganti maka di perlukan akun lagi
@@ -50,6 +50,11 @@ User hanya satu karena jobdesknya management absensi di kantor, dengan begitu ji
 > [!NOTE]
 > Didalam data karyawan terdapat indetitas karyawan/karyawati, oleh karena itu tidak bisa banyak user untuk akses ke web absensi.
 > Maka jika ada User lain, diperlukan akun lain untuk mencegah orang asing masuk ke web 
+
+> [!CAUTION]
+> Web ini belum sepenuhnya selesai, dimana masih ada banyak kekurangan seperti
+> 1. relasi tabel absen dengan tabel pembukuan untuk menympan data absensi mingguan berdasarkan bulan
+> 2. fungtionalitas sepenuhnya pada halaman formulir dimana belum bisa merelasi ke tabel absensi dan muncul di notifi
 
 ### Teknologi yang digunakan
 - Laravel 9
