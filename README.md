@@ -5,6 +5,7 @@ Karena pada dasarnya tidak diperbolehkan sembarangan orang untuk melihat identit
 ## Fitur Web
 - Halaman Awal (Landing Page) 
 *sesi/login* atau **halaman login**
+- Formulir Absen (formulir/create)
 
 - Autenthication
   - Register
