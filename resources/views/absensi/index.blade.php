@@ -97,8 +97,8 @@
                                 <tbody>
                                     @foreach($absensi as $item)
                                     <tr>
-                                        <td>{{ $item->nip }}</td> <!-- Mengakses langsung dari data absensi -->
-                                        <td>{{ $item->nama }}</td> <!-- Mengakses langsung dari data absensi -->
+                                        <td>{{ $item->nip }}</td> 
+                                        <td>{{ $item->nama }}</td> 
                                         <td>
                                             <input type="hidden" name="senin[{{ $loop->index }}]" value="0">
                                             <input type="checkbox" name="senin[{{ $loop->index }}]" value="1" {{ $item->senin ? 'checked' : '' }}>
@@ -119,14 +119,14 @@
                                             <input type="hidden" name="jumat[{{ $loop->index }}]" value="0">
                                             <input type="checkbox" name="jumat[ $loop->index ]" value="1" {{ $item->jumat ? 'checked' : '' }}>
                                         </td>
-                                        <td>{{ date('F', strtotime($item->bulan)) }}</td> <!-- Menampilkan bulan -->
+                                        <td>{{ date('F', strtotime($item->bulan)) }}</td> 
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </form>
 
-                        <!-- Tombol Save yang memunculkan modal -->
+                        <!-- Tombol Save -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bulanModal">
                             Save
                         </button>
@@ -142,7 +142,7 @@
                                     <div class="modal-body">
                                         <form id="saveAbsensiForm" action="{{ route('absensi.store') }}" method="POST">
                                             @csrf
-                                            <!-- Pilih bulan -->
+                                            
                                             <div class="form-group">
                                                 <label for="bulan">Pilih Bulan</label>
                                                 <select class="form-control" id="bulan" name="bulan" required>
@@ -160,8 +160,7 @@
                                                     <option value="December">December</option>
                                                 </select>
                                             </div>
-
-                                            <!-- Absensi Data (disembunyikan jika diperlukan) -->
+                                            
                                             @foreach($absensi as $absen)
                                             <input type="hidden" name="nip[]" value="{{ $absen->nip }}">
                                             <input type="hidden" name="nama[]" value="{{ $absen->nama }}">

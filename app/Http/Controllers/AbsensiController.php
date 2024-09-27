@@ -53,15 +53,13 @@ class AbsensiController extends Controller
             'bulan' => 'nullable'
         ]);
 
-        // Ambil atau buat pembukuan untuk bulan yang dipilih
         $pembukuan = Pembukuan::firstOrCreate(['bulan' => $request->bulan]);
 
         foreach ($validatedData['nip'] as $key => $nip) {
-            // Periksa dan perbarui data absensi yang sudah ada atau buat baru
             Absensi::updateOrCreate(
                 [
                     'nip' => $nip,
-                    'bulan' => $pembukuan->bulan // Menggunakan bulan yang sama
+                    'bulan' => $pembukuan->bulan
                 ],
                 [
                     'nama' => $validatedData['nama'][$key],
