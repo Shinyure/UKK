@@ -53,8 +53,8 @@ User hanya satu karena jobdesknya management absensi di kantor, dengan begitu ji
 
 > [!CAUTION]
 > Web ini belum sepenuhnya selesai, dimana masih ada banyak kekurangan seperti
-> 1. relasi tabel absen dengan tabel pembukuan untuk menympan data absensi mingguan berdasarkan bulan
-> 2. fungtionalitas sepenuhnya pada halaman formulir dimana belum bisa merelasi ke tabel absensi dan muncul di notifi
+> 1. relasi tabel absen dengan tabel pembukuan untuk menympan data absensi mingguan berdasarkan bulan, masih terdapat error yang tidak dimengerti
+> 2. fungtionalitas sepenuhnya pada halaman formulir dimana belum bisa merelasi ke tabel absensi dan muncul di notifikasi
 
 ### Teknologi yang digunakan
 - Laravel 9
