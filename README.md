@@ -32,7 +32,7 @@ Karena pada dasarnya tidak diperbolehkan sembarangan orang untuk melihat identit
 
 ## ERD & Relasi Antar Tabel
 <picture>
-    <img alt="ERD" src="https://github.com/Shinyure/Nekochi/blob/main/ERD.png">
+    <img alt="ERD" src="https://github.com/Shinyure/Nekochi/blob/main/ERD2.png">
 </picture>
 
 -Penjelasan
